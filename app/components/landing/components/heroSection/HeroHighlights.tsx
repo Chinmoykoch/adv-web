@@ -14,7 +14,7 @@ export default function HeroHighlights() {
         <svg className="shrink-0 text-primary" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 13v-2a8 8 0 0 1 16 0v6a3 3 0 0 1-3 3h-3M4 12h3v6H4zm13 0h3v6h-3zM10 20h4" />
         </svg>
-        <a href="#contact" className="underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-primary">
+        <a href="/contact" className="underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-primary">
           Help planning your trip
         </a>
       </li>

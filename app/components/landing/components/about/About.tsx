@@ -78,7 +78,7 @@ export default function About() {
             </p>
           </div>
           <a
-            href="#contact"
+            href="/contact"
             className="group mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-[.08em] text-primary hover:text-primary-600"
           >
             Our Story

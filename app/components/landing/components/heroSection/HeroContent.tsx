@@ -25,7 +25,7 @@ export default function HeroContent({ activeSlide }: { activeSlide: number }) {
         From the streets of Guwahati to the hills, rivers, and hidden corners of the Northeast, choose your car and explore at your own pace. Make your own route, stop wherever you want, and enjoy the freedom to turn every drive into a memorable journey.
       </p>
       <div className="mt-5.5 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3">
-        <a href="#contact" className={`${action} bg-primary shadow-[0_6px_18px_#d6460038] hover:bg-primary-600`}>
+        <a href="/contact" className={`${action} bg-primary shadow-[0_6px_18px_#d6460038] hover:bg-primary-600`}>
           Enquire Now <span aria-hidden="true">&rarr;</span>
         </a>
         <a href="#cars" className={`${action} border border-white/25 bg-white/10 backdrop-blur-sm hover:bg-white/20`}>

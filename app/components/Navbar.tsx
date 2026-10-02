@@ -5,10 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Blog", href: "#blog" },
-  { label: "Cars", href: "#cars" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/aboutus" },
+  { label: "Blog", href: "/blogs" },
+  { label: "Cars", href: "/#cars" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export default function Navbar() {
@@ -52,23 +52,23 @@ export default function Navbar() {
         <ul className="hidden items-center gap-9 lg:flex">
           {navigation.map(({ label, href }) => (
             <li key={href}>
-              <a
+              <Link
                 href={href}
                 className="inline-flex min-h-10 items-center whitespace-nowrap text-[15px] font-medium text-secondary/80 transition-colors hover:text-primary motion-reduce:transition-none"
               >
                 {label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#contact"
+        <Link
+          href="/contact"
           className="hidden min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-white shadow-[0_3px_12px_#d6460033] transition-colors hover:bg-primary-600 motion-reduce:transition-none lg:inline-flex"
         >
           Enquire Now
           <ArrowIcon />
-        </a>
+        </Link>
 
         <button
           ref={menuButtonRef}
@@ -92,24 +92,24 @@ export default function Navbar() {
           <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
             {navigation.map(({ label, href }) => (
               <li key={href}>
-                <a
+                <Link
                   href={href}
                   onClick={() => setIsOpen(false)}
                   className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-neutral hover:bg-neutral-100 hover:text-primary"
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             onClick={() => setIsOpen(false)}
             className="mt-3 flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-white hover:bg-primary-600"
           >
             Enquire Now
             <ArrowIcon />
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

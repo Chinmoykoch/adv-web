@@ -18,7 +18,7 @@ export default function LandingPage(){
     <CarFleet />
     <BannerSection />
     <WhyChooseUs />
-    <CustomerMemories />
+    {/* <CustomerMemories /> */}
     <Testimonial />
     </>
 }

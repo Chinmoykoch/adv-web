@@ -42,7 +42,7 @@ export default function CarCard({ car }: { car: Car }) {
             <span className="text-xs text-neutral">/day</span>
           </p>
           <a
-            href="#contact"
+            href="/contact"
             aria-label={`Enquire about the ${car.name}`}
             className="group inline-flex min-h-11 items-center gap-1.5 text-xs font-bold uppercase tracking-[.08em] text-primary hover:text-primary-600"
           >
