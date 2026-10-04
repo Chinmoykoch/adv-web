@@ -12,7 +12,11 @@ const SAFETY_NET_SECONDS = 3600;
 
 async function get<T>(path: string, tags: string[]): Promise<T | null> {
   if (!API) throw new Error("Set API_URL (or NEXT_PUBLIC_API_URL) so the website can load its content.");
-  const response = await fetch(`${API}/api/public${path}`, { cache: "force-cache", next: { tags, revalidate: SAFETY_NET_SECONDS } });
+  const response = await fetch(`${API}/api/public${path}`, { cache: "force-cache", next: { tags, revalidate: SAFETY_NET_SECONDS } })
+    .catch((error: unknown) => {
+      // A network failure (backend stopped, wrong address) says only "fetch failed"; name the cause.
+      throw new Error(`Content API unreachable at ${API} (${path}). Is the backend running?`, { cause: error });
+    });
   if (response.status === 404) return null;
   // Throwing keeps the last good version of the page online instead of caching an error.
   if (!response.ok) throw new Error(`Content API ${response.status} for ${path}`);
