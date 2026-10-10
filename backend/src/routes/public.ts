@@ -7,10 +7,21 @@ import { collections, isCollectionKey, type CollectionConfig } from "../schemas/
 import { slug } from "../schemas/fields";
 import { leadSubmissionSchema } from "../schemas/leads";
 import { parsePageKey } from "../schemas/pages";
+import { featuredGoogleReviews } from "../services/googleReviews";
 
 // Read-only content for the website, plus the enquiry form. Only published, non-archived
 // records are returned, and only the columns the website needs.
 export const publicRoutes = Router();
+
+publicRoutes.get("/google-reviews", async (_req, res) => {
+  res.set("Cache-Control", "no-store");
+  try { res.json({ items: await featuredGoogleReviews() }); }
+  catch {
+    // Google being unavailable must not hide manually managed testimonials or break the home page.
+    console.warn("Featured Google reviews unavailable; showing manually managed testimonials.");
+    res.json({ items: [] });
+  }
+});
 
 function collectionOf(req: Request): CollectionConfig {
   const key = req.params.collection as string;

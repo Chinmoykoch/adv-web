@@ -44,7 +44,7 @@ export default async function AboutUsPage() {
 
               <h1
                 id="about-heading"
-                className="max-w-xl text-[clamp(2.5rem,4.2vw,4rem)] uppercase leading-[1.16] tracking-tight text-secondary"
+                className="max-w-xl font-body text-[clamp(2.5rem,4.2vw,4rem)] font-extrabold uppercase leading-[0.94] tracking-[-0.065em] text-secondary"
               >
                 {words.join(" ")}{lastWord && <> <span className="text-primary">{lastWord}</span></>}
               </h1>

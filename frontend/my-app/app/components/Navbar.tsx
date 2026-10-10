@@ -34,7 +34,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          aria-label="AdventureCarz home"
+          aria-label="Adventurecarz home"
           className="flex shrink-0 items-center gap-2.5 text-secondary"
           onClick={() => setIsOpen(false)}
         >
@@ -46,7 +46,7 @@ export default function Navbar() {
             sizes="36px"
             className="h-11 w-auto shrink-0"
           />
-          <span className="font-heading text-xl font-semibold tracking-tight sm:text-[22px]">AdventureCarz</span>
+          <span className="font-heading text-xl font-semibold tracking-tight sm:text-[22px]">Adventurecarz</span>
         </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">

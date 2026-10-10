@@ -127,8 +127,12 @@ export const pageDefinitions = {
   contact: { title: "Contact", href: "/contact", groups: [
     { title: "Page introduction", fields: [{ key: "heading", label: "Heading", required: true }, { key: "description", label: "Introduction", type: "textarea" }, ...imageFields] },
     { title: "Contact information", fields: [
-      { key: "whatsapp", label: "WhatsApp number", hint: "Include the country code, for example: +91… Phone, email, address and hours are edited in Site settings so they match everywhere on the site." },
+      { key: "whatsapp", label: "WhatsApp number", hint: "Include the country code, for example: +91 98765 43210. Shown on this page and used by the floating WhatsApp button on every page. Phone, email, address and hours are edited in Site settings so they match everywhere on the site." },
       { key: "mapLink", label: "Map link", hint: "Must start with https://" },
+    ] }, { title: "WhatsApp button", fields: [
+      { key: "whatsappQuestion", label: "Label, first part", hint: "The floating button appears on every page once a WhatsApp number is set above. For example: Need Help?" },
+      { key: "whatsappAction", label: "Label, bold part", hint: "For example: Chat with us. On phones only the round icon is shown." },
+      { key: "whatsappMessage", label: "Pre-filled message", type: "textarea", hint: "Typed into WhatsApp for the visitor, ready to send. On a car’s page, the car’s name is added automatically." },
     ] }, { title: "Enquiry form", fields: [
       { key: "formHeading", label: "Form heading" }, { key: "formDescription", label: "Form introduction", type: "textarea" },
       { key: "formButton", label: "Submit button text" }, { key: "formSuccess", label: "Confirmation message", type: "textarea", hint: "Shown after someone sends an enquiry." },
@@ -155,14 +159,14 @@ export const pageDefinitions = {
       { key: "googleVerification", label: "Google Search Console code", hint: "From Search Console → Settings → Ownership verification → HTML tag. Paste only the content value." },
     ] },
     { title: "Business details (local SEO)", fields: [
-      { key: "phone", label: "Phone", hint: "Use exactly the same number as on your Google Business Profile, with the country code." },
+      { key: "phone", label: "Phone numbers", type: "textarea", hint: "One number per line, with the country code. The first is the main number shown to Google: use exactly the same number as on your Google Business Profile." },
       { key: "email", label: "Email", type: "email" },
       { key: "streetAddress", label: "Street address", hint: "Must match your Google Business Profile word for word." },
       { key: "locality", label: "City", required: true }, { key: "region", label: "State", required: true },
       { key: "postalCode", label: "PIN code" }, { key: "country", label: "Country code", hint: "Two letters, for example: IN" },
       { key: "latitude", label: "Latitude", type: "number", min: -90, max: 90, step: "any", hint: "Right-click your location in Google Maps to copy the coordinates." },
       { key: "longitude", label: "Longitude", type: "number", min: -180, max: 180, step: "any" },
-      { key: "openingHours", label: "Opening hours", hint: "For example: Mo-Su 08:00-20:00, or Mo-Fr 09:00-18:00 on one line and Sa 10:00-16:00 on the next." },
+      { key: "openingHours", label: "Opening hours", hint: "For example: Mo-Su 08:00-20:00, or Mo-Fr 09:00-18:00 on one line and Sa 10:00-16:00 on the next. Open 24 hours: Mo-Su 00:00-23:59 (shown to visitors as “Open 24 hours, every day”)." },
       { key: "priceRange", label: "Price range", hint: "For example: ₹₹" },
       { key: "areaServed", label: "Areas served", type: "textarea", hint: listHint },
       { key: "sameAs", label: "Profile links", type: "textarea", hint: "Google Business Profile, Instagram, Facebook and similar. One https:// link per line." },
@@ -191,7 +195,7 @@ export const initialContent: ContentStore = {
       aboutEyebrow: "About Adventure Carz", aboutHeading: "DRIVE YOUR WAY.\nEXPLORE NORTHEAST.",
       aboutDescription: "At AdventureCarz, we make self-drive car rentals simple, convenient, and stress-free. Whether you’re heading out for a weekend getaway, travelling for work, catching a flight, or planning a road trip across Assam and the Northeast, you get a well-maintained car and the freedom to travel your way.",
       aboutSecondParagraph: "From choosing the right car to getting back home, we keep the rental experience straightforward. With transparent pricing, flexible rental options, and dependable support whenever you need it, we’re here to make every drive comfortable, smooth, and worth remembering.",
-      aboutImage: "/car2.png", aboutImageAlt: "Adventure Carz SUV with a roof tent on a gravel track through the mountains", aboutBadgeLabel: "Overland certified", aboutBadgeText: "High-altitude calibrated & tested", aboutButtonLabel: "Our Story", aboutButtonHref: "/contact",
+      aboutImage: "/car2.png", aboutImageAlt: "Adventure Carz SUV with a roof tent on a gravel track through the mountains", aboutBadgeLabel: "Overland certified", aboutBadgeText: "High-altitude calibrated & tested", aboutButtonLabel: "Our Story", aboutButtonHref: "/aboutus",
       servicesEyebrow: "Services & Experiences", servicesHeading: "MORE THAN A RENTAL.", servicesEmphasis: "IT'S YOUR JOURNEY.",
       servicesDescription: "Your journey starts with the right car. From exploring Guwahati to heading out on a road trip across Assam and the Northeast, AdventureCarz gives you the freedom to drive at your own pace, with convenient doorstep and airport delivery options.",
       fleetEyebrow: "Curated Garage", fleetHeading: "Choose Your", fleetEmphasis: "Ride.", fleetLinkLabel: "View all cars",
@@ -218,7 +222,8 @@ export const initialContent: ContentStore = {
       customersNote: "Travel inspiration gallery · Illustrative photos",
       seoTitle: "About Us", seoDescription: "Meet AdventureCarz, your Guwahati-based travel and self-drive car rental partner for city journeys, scenic escapes, and road trips across Assam.",
     } },
-    contact: { updatedAt: null, values: { heading: "Contact Us", description: "Plan your next journey with AdventureCarz.", formButton: "Send enquiry", seoTitle: "Contact Us: Book a Car in Guwahati", seoDescription: "Contact AdventureCarz to book a self-drive car in Guwahati, with doorstep and airport delivery for trips across Assam and the Northeast." } },
+    contact: { updatedAt: null, values: { heading: "Contact Us", description: "Plan your next journey with AdventureCarz.", mapLink: site.mapLink, formButton: "Send enquiry",
+      whatsappQuestion: "Need Help?", whatsappAction: "Chat with us", whatsappMessage: "Hi AdventureCarz, I’d like to enquire about renting a self-drive car.", seoTitle: "Contact Us: Book a Car in Guwahati", seoDescription: "Contact AdventureCarz to book a self-drive car in Guwahati, with doorstep and airport delivery for trips across Assam and the Northeast." } },
     blogs: { updatedAt: null, values: { eyebrow: "Expedition Dispatch", heading: "Travel Notes.", seoTitle: "Travel Blog: Assam Road Trip Guides", seoDescription: "Road trip guides, self-drive tips, and fleet advice for exploring Guwahati, Assam, and the Northeast from AdventureCarz." } },
     cars: { updatedAt: null, values: { eyebrow: "Curated Garage", heading: "Choose Your", emphasis: "Ride.", seoTitle: "Self-Drive Cars for Rent in Guwahati", seoDescription: "Browse self-drive SUVs, sedans, and 7-seat MUVs for rent in Guwahati, with doorstep or airport delivery for trips across Assam." } },
     "site-settings": { updatedAt: null, values: {

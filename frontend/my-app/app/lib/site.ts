@@ -17,22 +17,29 @@ export const site = {
   // Leave a field empty until the real value is confirmed; empty fields are left out of
   // the structured data rather than published as placeholders.
   business: {
-    phone: "",
+    // One number per line; the first is the main number published to Google.
+    phone: "+91 7002458987\n+91 9678449177",
     email: "",
-    streetAddress: "",
+    streetAddress: "38, Ground Floor, House No, Lakshmi Nagar Rd, opposite Nursery Field, Sundarpur",
     locality: "Guwahati",
     region: "Assam",
-    postalCode: "",
+    postalCode: "781005",
     country: "IN",
-    latitude: "",
-    longitude: "",
-    // schema.org format, for example "Mo-Su 08:00-20:00".
-    openingHours: "",
+    latitude: "26.154483",
+    longitude: "91.784658",
+    // schema.org format, for example "Mo-Su 08:00-20:00". "Mo-Su 00:00-23:59" means open 24 hours.
+    openingHours: "Mo-Su 00:00-23:59",
     priceRange: "₹₹",
     areaServed: ["Guwahati", "Assam", "Northeast India"],
     // Google Business Profile, Instagram, Facebook and similar profile links.
-    sameAs: [] as string[],
+    sameAs: [
+      "https://www.instagram.com/adventurecarz",
+      "https://www.facebook.com/share/1HpHKxXeHp/",
+      "https://maps.app.goo.gl/oiKsf6HrPQ3C23eG9",
+    ],
   },
+  // The Google Maps listing, linked from the address on the Contact page and in the footer.
+  mapLink: "https://maps.app.goo.gl/oiKsf6HrPQ3C23eG9",
 };
 
 export type SiteSettings = {
@@ -63,10 +70,27 @@ export function resolveSiteSettings(content: Record<string, string>): SiteSettin
       country: text("country", b.country), latitude: text("latitude", b.latitude), longitude: text("longitude", b.longitude),
       openingHours: text("openingHours", b.openingHours), priceRange: text("priceRange", b.priceRange),
       areaServed: content.areaServed !== undefined ? lines(content.areaServed) : b.areaServed,
-      sameAs: lines(content.sameAs).filter((url) => url.startsWith("https://")),
+      sameAs: (lines(content.sameAs).length ? lines(content.sameAs) : b.sameAs).filter((url) => url.startsWith("https://")),
     },
   };
 }
+
+// Several phone numbers may be entered, one per line; the first is the main one.
+export const phoneNumbers = (phone: string) => lines(phone.replace(/,/g, "\n"));
+export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
+
+// wa.me needs the country code; a 10-digit Indian mobile number typed without it gets 91.
+// Returns "" when the number is too short to be valid.
+export function whatsAppNumber(value: string) {
+  const digits = value.replace(/\D/g, "");
+  const number = digits.length === 10 ? `91${digits}` : digits;
+  return number.length < 11 ? "" : number;
+}
+
+// Opening hours are stored in schema.org format for Google; visitors see "Open 24 hours" instead
+// of "Mo-Su 00:00-23:59". Other schedules are shown as entered.
+export const openingHoursText = (value: string) =>
+  lines(value).map((line) => (/^Mo-Su 00:00-(23:59|24:00)$/i.test(line) ? "Open 24 hours, every day" : line)).join("\n");
 
 export const absoluteUrl = (path = "/") => new URL(path, `${site.url}/`).toString();
 

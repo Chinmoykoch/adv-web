@@ -78,7 +78,7 @@ export default function About({ eyebrow, heading, paragraphs, image, imageAlt, b
             {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
           {buttonLabel && <a
-            href={buttonHref || "/contact"}
+            href={buttonLabel.trim().toLowerCase() === "our story" && buttonHref === "/contact" ? "/aboutus" : buttonHref || "/aboutus"}
             className="group mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-[.08em] text-primary hover:text-primary-600"
           >
             {buttonLabel}

@@ -2,7 +2,7 @@ import "server-only";
 import { initialContent, type PageKey } from "../adv-admin-panel/lib/content";
 import type { BlogPost } from "../blogs/data";
 import type { Car } from "../components/landing/components/cars/carData";
-import { resolveSiteSettings, type SeoControls } from "./site";
+import { resolveSiteSettings, whatsAppNumber, type SeoControls } from "./site";
 
 // All public content comes from the Express API, which reads Supabase. Responses are cached
 // and tagged; when an admin saves, the backend calls /api/revalidate with the matching tags
@@ -149,11 +149,24 @@ export type Service = {
   id: string; title: string; label: string | null; description: string; image: string | null; imageAlt: string | null;
   featureBadge: string | null; featureTitle: string | null; featureDescription: string | null;
 };
-export type Testimonial = { id: string; customerName: string; tripOrRole: string | null; quote: string; rating: number | null };
+export type Testimonial = { id: string; customerName: string; tripOrRole: string | null; quote: string; rating: number | null; source?: "google"; sourceUrl?: string; reviewedAt?: string | null };
 export type HappyCustomer = { id: string; title: string; category: string | null; destination: string | null; image: string | null; imageAlt: string | null; caption: string | null };
 
 export const getServices = () => list<Service>("services", "services");
-export const getTestimonials = () => list<Testimonial>("testimonials", "testimonials");
+export async function getTestimonials() {
+  const googleReviews = async (): Promise<Testimonial[]> => {
+    try {
+      // Google review text stays out of Next's persistent content cache. The backend has a
+      // short-lived performance cache; manual testimonials keep their existing caching.
+      const response = await fetch(`${API}/api/public/google-reviews`, { cache: "no-store", signal: AbortSignal.timeout(15_000) });
+      if (!response.ok) return [];
+      const data = await response.json() as { items: Testimonial[] };
+      return data.items;
+    } catch { return []; }
+  };
+  const [manual, google] = await Promise.all([list<Testimonial>("testimonials", "testimonials"), googleReviews()]);
+  return [...google, ...manual];
+}
 export const getHappyCustomers = () => list<HappyCustomer>("happy-customers", "happy-customers");
 
 // ---------------------------------------------------------------------------
@@ -163,6 +176,20 @@ export const getHappyCustomers = () => list<HappyCustomer>("happy-customers", "h
 export async function getRedirect(path: string) {
   const redirects = (await get<{ items: { fromPath: string; toPath: string }[] }>("/redirects", ["redirects"]))?.items ?? [];
   return redirects.find((redirect) => redirect.fromPath === path)?.toPath ?? null;
+}
+
+// The floating WhatsApp button, shown on every public page once the Contact page has a number.
+// Like the site settings below, a failure here only hides the button; it never breaks a page.
+export async function getWhatsAppButton() {
+  try {
+    const contact = await getPage("contact");
+    const number = whatsAppNumber(contact.whatsapp ?? "");
+    if (!number) return null;
+    return { number, question: contact.whatsappQuestion ?? "", action: contact.whatsappAction ?? "", message: contact.whatsappMessage ?? "" };
+  } catch (error) {
+    console.error("WhatsApp button unavailable:", error instanceof Error ? error.message : error);
+    return null;
+  }
 }
 
 // For the root layout, which also wraps the admin panel: if the API is unreachable, fall back

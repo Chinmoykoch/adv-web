@@ -19,7 +19,8 @@ export const leadSubmissionSchema = z.object({
   utmCampaign: text(100),
   consent: z.literal(true, "Please agree to be contacted about your enquiry"),
   extra: z.record(z.string().regex(/^[a-zA-Z][a-zA-Z0-9]{0,39}$/), z.string().max(500))
-    .refine((value) => Object.keys(value).length <= 20, "Too many extra fields").optional(),
+    .refine((value) => Object.keys(value).length <= 20, "Too many extra fields")
+    .refine((value) => !value.pickupTime || /^([01]\d|2[0-3]):[0-5]\d$/.test(value.pickupTime), { path: ["pickupTime"], message: "Please enter a valid pickup time" }).optional(),
   // Honeypot: hidden from people, so only bots fill it in.
   website: z.string().max(500).optional(),
 }).refine((lead) => !lead.pickupDate || !lead.returnDate || lead.returnDate >= lead.pickupDate, {

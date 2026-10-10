@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import policies from "./content/policies.json";
 import { getBlogPosts, getCars, getPage } from "./lib/queries";
 import { absoluteUrl, inSitemap, pageSeoControls, type SeoControls } from "./lib/site";
 
@@ -19,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...posts.map((post): Entry => ({ path: `/blogs/${post.slug}`, seo: post, lastModified: post.updatedAt ?? post.date, changeFrequency: "monthly", priority: 0.6 })),
     { path: "/aboutus", seo: pageSeoControls(about), changeFrequency: "monthly", priority: 0.7 },
     { path: "/contact", seo: pageSeoControls(contact), changeFrequency: "monthly", priority: 0.7 },
+    ...policies.map((policy): Entry => ({ path: `/${policy.slug}`, seo: {}, lastModified: policy.dateISO, changeFrequency: "yearly", priority: 0.3 })),
   ];
   return entries.flatMap(({ path, seo, ...entry }) => (inSitemap(path, seo) ? [{ ...entry, url: absoluteUrl(path) }] : []));
 }

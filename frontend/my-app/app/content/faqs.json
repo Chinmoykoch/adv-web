@@ -1,0 +1,171 @@
+{
+  "introduction": "Welcome to Adventurecarz! Find answers to common questions about our self-drive car rental services, vehicle availability, booking process, and rental requirements.",
+  "questions": [
+    {
+      "id": "faq-1",
+      "question": "What is Adventurecarz?",
+      "blocks": [
+        "Adventurecarz provides self-drive car rental services in Guwahati, Assam. We offer a range of vehicles for customers looking to explore the city, travel around Northeast India, or arrange transportation for personal trips."
+      ]
+    },
+    {
+      "id": "faq-2",
+      "question": "How can I book a car with Adventurecarz?",
+      "blocks": [
+        "Booking enquiries are simple:",
+        "Browse the available vehicles on our website.\nSelect your preferred vehicle.\nFill out the enquiry form with your details and rental requirements.\nAlternatively, contact us directly through WhatsApp.\nOur team will contact you to discuss availability, pricing, and the next steps.",
+        "Your booking is confirmed only after Adventurecarz communicates its acceptance."
+      ]
+    },
+    {
+      "id": "faq-3",
+      "question": "Can I book a car directly through WhatsApp?",
+      "blocks": [
+        "Yes. You can use the WhatsApp button on our website to contact our team directly.",
+        "Share your preferred vehicle, rental dates, and requirements. Our team will respond with the available options and booking details."
+      ]
+    },
+    {
+      "id": "faq-4",
+      "question": "Which cars are available for rent?",
+      "blocks": [
+        "Adventurecarz offers a selection of vehicles, which may include hatchbacks, sedans, SUVs, and other vehicle categories.",
+        "Available models can change depending on existing bookings and fleet availability.",
+        "Visit our website to explore the current fleet or contact our team for the latest availability."
+      ]
+    },
+    {
+      "id": "faq-5",
+      "question": "Are all vehicles displayed on the website available immediately?",
+      "blocks": [
+        "Not necessarily. Vehicle availability depends on existing reservations, rental dates, and operational requirements.",
+        "Please submit an enquiry or contact us through WhatsApp to confirm whether your preferred vehicle is available for your dates."
+      ]
+    },
+    {
+      "id": "faq-6",
+      "question": "What documents are required to rent a car?",
+      "blocks": [
+        "Customers may be required to provide a valid driving licence and appropriate identification documents.",
+        "Our team will explain the applicable documentation requirements before confirming your rental."
+      ]
+    },
+    {
+      "id": "faq-7",
+      "question": "Who is eligible to rent a car?",
+      "blocks": [
+        "Customers must meet the applicable legal requirements for renting and driving a vehicle, including valid driving licence requirements and any additional eligibility conditions communicated by Adventurecarz.",
+        "Please contact our team to confirm the requirements applicable to your preferred vehicle."
+      ]
+    },
+    {
+      "id": "faq-8",
+      "question": "Can I rent a car for one day?",
+      "blocks": [
+        "Rental availability and minimum rental duration depend on the vehicle and the requested dates.",
+        "Contact our team with your preferred dates so we can confirm the available options."
+      ]
+    },
+    {
+      "id": "faq-9",
+      "question": "Can I rent a car for multiple days?",
+      "blocks": [
+        "Yes. You can enquire about rentals for multiple days, subject to vehicle availability and the applicable rental terms.",
+        "Please provide your intended pickup date, return date, and preferred vehicle when submitting an enquiry."
+      ]
+    },
+    {
+      "id": "faq-10",
+      "question": "Can I use the car to travel outside Guwahati?",
+      "blocks": [
+        "Travel outside Guwahati may be possible, subject to the vehicle's permitted usage, the agreed rental conditions, and any applicable geographical restrictions.",
+        "Please inform our team about your intended destination before confirming your booking."
+      ]
+    },
+    {
+      "id": "faq-11",
+      "question": "Can I pick up a car at Guwahati Airport?",
+      "blocks": [
+        "Airport pickup arrangements may be available depending on the vehicle, availability, and agreed arrangements.",
+        "Please contact Adventurecarz in advance to discuss your arrival time, pickup requirements, and any applicable charges."
+      ]
+    },
+    {
+      "id": "faq-12",
+      "question": "How much does it cost to rent a car?",
+      "blocks": [
+        "Rental charges vary depending on the vehicle, rental duration, requested dates, and other applicable conditions.",
+        "Submit an enquiry through our website or contact us through WhatsApp to receive pricing information for your preferred vehicle."
+      ]
+    },
+    {
+      "id": "faq-13",
+      "question": "Can I pay online through the website?",
+      "blocks": [
+        "No. The Adventurecarz website currently allows customers to browse vehicles and submit enquiries; it does not provide an online payment facility.",
+        "Our team will explain the applicable charges and payment arrangements directly during the booking process."
+      ]
+    },
+    {
+      "id": "faq-14",
+      "question": "Is a security deposit required?",
+      "blocks": [
+        "Security deposit requirements, if applicable, depend on the vehicle and the rental terms.",
+        "Please confirm the deposit amount, payment arrangements, and applicable refund conditions with our team before finalizing your booking."
+      ]
+    },
+    {
+      "id": "faq-15",
+      "question": "What happens if I need to cancel my booking?",
+      "blocks": [
+        "If you need to cancel a confirmed booking, contact Adventurecarz as soon as possible.",
+        "Cancellation eligibility, applicable charges, and refund conditions are governed by the agreed booking terms and our Cancellation & Refund Policy."
+      ]
+    },
+    {
+      "id": "faq-16",
+      "question": "Can I change my booking dates after confirmation?",
+      "blocks": [
+        "You can contact our team to request a change to your rental dates or vehicle selection.",
+        "All changes are subject to vehicle availability, approval, and any applicable adjustments to the rental charges."
+      ]
+    },
+    {
+      "id": "faq-17",
+      "question": "What should I do if the vehicle breaks down during the rental?",
+      "blocks": [
+        "Contact Adventurecarz promptly if your rental vehicle experiences a breakdown or mechanical problem.",
+        "Our team will advise you on the appropriate next steps. Please follow the applicable safety procedures and rental conditions."
+      ]
+    },
+    {
+      "id": "faq-18",
+      "question": "What happens if the car is damaged during the rental?",
+      "blocks": [
+        "Report any accident or damage to Adventurecarz as soon as possible.",
+        "Responsibility for damage, associated charges, and any applicable insurance arrangements will be assessed according to the rental agreement, relevant insurance terms, and applicable law."
+      ]
+    },
+    {
+      "id": "faq-19",
+      "question": "Can someone else drive the rental car?",
+      "blocks": [
+        "Only drivers who satisfy the applicable eligibility requirements and are authorized under the rental agreement should operate the vehicle.",
+        "Please inform our team if another person may need to drive the car before finalizing your booking."
+      ]
+    },
+    {
+      "id": "faq-20",
+      "question": "How can I contact Adventurecarz?",
+      "blocks": [
+        "You can contact our team using the following details:",
+        "Phone / WhatsApp:",
+        "+91 70024 57987\n+91 96784 49177",
+        "Email: adventurecarz23@gmail.com",
+        "Office Address:\n38, Ground Floor, House No., Lakshmi Nagar Road, opposite Nursery Field, Sundarpur, Guwahati, Assam 781005.",
+        "Website: https://adventurecarz.com/",
+        "You can also use the WhatsApp button available on our website for convenient communication."
+      ]
+    }
+  ]
+}

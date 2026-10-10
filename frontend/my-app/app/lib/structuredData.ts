@@ -1,6 +1,6 @@
 import type { BlogPost } from "../blogs/data";
 import type { Car } from "../components/landing/components/cars/carData";
-import { absoluteUrl, site, type SiteSettings } from "./site";
+import { absoluteUrl, phoneNumbers, site, type SiteSettings } from "./site";
 
 // Drops empty strings and arrays so unconfirmed business details are never published.
 function compact<T extends Record<string, unknown>>(value: T) {
@@ -21,7 +21,7 @@ export function localBusinessJsonLd(settings: SiteSettings) {
     url: absoluteUrl("/"),
     logo: absoluteUrl(site.logo),
     image: absoluteUrl(settings.image.url),
-    telephone: b.phone,
+    telephone: phoneNumbers(b.phone)[0],
     email: b.email,
     priceRange: b.priceRange,
     // One line per schedule in the admin, e.g. "Mo-Fr 09:00-18:00".

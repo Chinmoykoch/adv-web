@@ -141,7 +141,7 @@ function LeadForm({ lead, onClose, onSaved }: { lead: Lead & { history: LeadHist
     ["Received", when(lead.createdAt)], ["Sent from", lead.sourcePath],
     ["Campaign", [lead.utmSource, lead.utmMedium, lead.utmCampaign].filter(Boolean).join(" / ")],
     ["Consent to contact", lead.consent ? "Yes" : "No"],
-    ...Object.entries(lead.extra ?? {}),
+    ...Object.entries(lead.extra ?? {}).map(([key, value]) => [key === "pickupTime" ? "Pickup time (IST)" : key, value]),
   ].filter(([, value]) => value) as [string, string][];
 
   return <>

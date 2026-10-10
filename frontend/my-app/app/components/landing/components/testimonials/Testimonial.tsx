@@ -5,6 +5,14 @@ import type { Testimonial as Review } from "../../../../lib/queries";
 
 export type TestimonialsCopy = { eyebrow: string; heading: string; emphasis: string };
 
+function GoogleAttribution({ review }: { review: Review }) {
+  if (review.source !== "google" || !review.sourceUrl) return null;
+  return <a href={review.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex min-h-11 items-center text-xs text-primary underline-offset-4 hover:underline">
+    Selected Google review <span aria-hidden="true" className="ml-1">↗</span>
+    <span className="sr-only"> (opens the business on Google Maps in a new tab)</span>
+  </a>;
+}
+
 // Filled stars for the review's rating; reviews saved without a rating show five.
 function Stars({ rating }: { rating: number | null }) {
   const filled = Math.min(5, Math.max(1, Math.round(rating ?? 5)));
@@ -79,6 +87,7 @@ export default function Testimonial({ copy, testimonials }: { copy: Testimonials
                 <div>
                   <p className="font-heading text-sm font-semibold text-secondary">{active.customerName}</p>
                   {active.tripOrRole && <p className="text-[10px] leading-relaxed text-body">{active.tripOrRole}</p>}
+                  <GoogleAttribution review={active} />
                 </div>
                 <span aria-hidden="true" className="font-heading text-5xl font-bold leading-none text-black/10">&rdquo;</span>
               </figcaption>
@@ -95,6 +104,7 @@ export default function Testimonial({ copy, testimonials }: { copy: Testimonials
               <figcaption className="mt-auto border-t border-black/[0.03] pt-4">
                 <p className="text-[10px] font-bold text-neutral">{next.customerName}</p>
                 {next.tripOrRole && <p className="text-[9px] leading-relaxed text-neutral-500">{next.tripOrRole}</p>}
+                <GoogleAttribution review={next} />
               </figcaption>
             </figure>
           </aside>}

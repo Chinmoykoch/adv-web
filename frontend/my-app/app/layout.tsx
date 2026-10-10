@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
+import Footer from "./components/Footer";
+import EnquiryPopup from "./components/EnquiryPopup";
 import JsonLd from "./components/JsonLd";
-import { getSiteSettingsOrDefault } from "./lib/queries";
+import PublicOnly from "./components/PublicOnly";
+import WhatsAppButton from "./components/WhatsAppButton";
+import { getSiteSettingsOrDefault, getWhatsAppButton } from "./lib/queries";
 import { site } from "./lib/site";
 import { websiteJsonLd } from "./lib/structuredData";
 import "./globals.css";
@@ -35,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const settings = await getSiteSettingsOrDefault();
+  const [settings, whatsApp] = await Promise.all([getSiteSettingsOrDefault(), getWhatsAppButton()]);
   return (
     <html
       lang="en-IN"
@@ -44,6 +48,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <JsonLd data={websiteJsonLd(settings)} />
         {children}
+        <PublicOnly><Footer /></PublicOnly>
+        <PublicOnly><EnquiryPopup /></PublicOnly>
+        {whatsApp && <WhatsAppButton config={whatsApp} />}
       </body>
     </html>
   );

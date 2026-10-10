@@ -16,6 +16,12 @@ const schema = z.object({
   REVALIDATE_SECRET: z.string().min(32, "REVALIDATE_SECRET must be at least 32 characters"),
   // Number of reverse proxies in front of the server (Render, Railway, Nginx...), so rate limits see the real visitor IP.
   TRUST_PROXY: z.coerce.number().int().min(0).default(0),
+  // Optional Google Business Profile connection. All credentials stay on the backend.
+  GOOGLE_BUSINESS_CLIENT_ID: z.string().trim().default(""),
+  GOOGLE_BUSINESS_CLIENT_SECRET: z.string().trim().default(""),
+  GOOGLE_BUSINESS_REFRESH_TOKEN: z.string().trim().default(""),
+  GOOGLE_BUSINESS_LOCATION: z.string().trim().refine((value) => !value || /^accounts\/[0-9]+\/locations\/[0-9]+$/.test(value), "Use accounts/ACCOUNT_ID/locations/LOCATION_ID").default(""),
+  GOOGLE_BUSINESS_MAPS_URL: z.string().trim().refine((value) => !value || /^https:\/\/(maps\.app\.goo\.gl|www\.google\.[a-z.]+|maps\.google\.[a-z.]+)\//.test(value), "Use a Google Maps HTTPS link").default(""),
 });
 
 const parsed = schema.safeParse(process.env);
